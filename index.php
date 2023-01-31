@@ -412,8 +412,7 @@
                 <div style="margin-top:150px;height:40px"><input type="checkbox" id="cAutoSun" value="1"
                                                                  onChange="CheckAutoSun(this)"><label for="cAutoSun"
                                                                                                       id="lAutoSun"
-                                                                                                      style="color:#FFF">Tự
-                        động nhận ánh sáng</label></div>
+                                                                                                      style="color:#FFF">Tự động nhận ánh sáng</label></div>
                 <div class="BigLevel" style="cursor:pointer" onClick="SelectModal(oS.Lvl)">Khởi động lại</div>
                 <div class="BigLevel" style="cursor:pointer"
                      onClick="HiddenOptions();SelectModal(0);SetBlock($('dSurface'),$('iSurfaceBackground'))">Trở lại

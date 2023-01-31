@@ -1,5 +1,5 @@
 oS.Init({
-    PName: [oPeashooter, oSnowPea, oThreepeater, oGatlingPea, oSplitPea, oPotatoMine, oWallNut, oTallNut, oSpikeweed, oSpikerock, oSquash, oChomper],
+    PName: [oPeashooter, oSnowPea, oThreepeater, oGatlingPea, oSplitPea, oPotatoMine, oWallNut, oTallNut, oSpikeweed, oSpikerock, oSquash, oChomper, oJalapeno, oCherryBomb, oTorchwood, oPumpkinHead],
     ZName: [oZombie, oZombie2, oZombie3, oConeheadZombie, oPoleVaultingZombie, oBucketheadZombie, oFlagZombie, oFootballZombie, oNewspaperZombie, oScreenDoorZombie],
     PicArr: ["images/interface/background1.jpg", "images/interface/trophy.png"],
     backgroundImage: "images/interface/background1.jpg",
@@ -88,7 +88,7 @@ oS.Init({
 
             let plantPrototype = oS.PName[index % 12].prototype;
             if (plantPrototype.CanGrow([undefined, undefined, undefined, undefined], arrIndex[index][0], arrIndex[index][1])) {
-                (new oS.PName[index % 12]).Birth(arrLocation[index][1], arrLocation[index][0], arrIndex[index][0], arrIndex[index][1], [undefined, undefined, undefined, undefined]);
+                (new oS.PName[index % 16]).Birth(arrLocation[index][1], arrLocation[index][0], arrIndex[index][0], arrIndex[index][1], [undefined, undefined, undefined, undefined]);
 
                 SetStyle($("imgGrowSoil"), {
                     left: arrLocation[index][1] - 30 + "px",
