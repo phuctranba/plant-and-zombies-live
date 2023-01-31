@@ -110,13 +110,13 @@ oS.Init({
             // }
         }, 3000)
 
-        let intervalCreateZombie = setInterval(() => {
-            let index = Math.floor(Math.random() * oS.ZName.length);
-            let nameZombie = randomString(10);
-            let laneIndex = Math.floor(Math.random() * 5) + 1;
-
-            BirthZombie(nameZombie, oS.ZName[index], 150, laneIndex);
-        }, 3000)
+        // let intervalCreateZombie = setInterval(() => {
+        //     let index = Math.floor(Math.random() * oS.ZName.length);
+        //     let nameZombie = randomString(10);
+        //     let laneIndex = Math.floor(Math.random() * 5) + 1;
+        //
+        //     BirthZombie(nameZombie, oS.ZName[index], 150, laneIndex);
+        // }, 3000)
 
 
         PrepareGrowPlants(function () {

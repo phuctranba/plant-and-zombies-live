@@ -352,6 +352,7 @@
     <script src="js/Cfunction.js" type="text/javascript"></script>
     <script src="js/CPlants.js" type="text/javascript"></script>
     <script src="js/CZombie.js" type="text/javascript"></script>
+    <script src="level/controll.js" type="text/javascript"></script>
     <script id="JSPVZ" type="text/javascript"></script>
     <script id="JSProcess" type="text/javascript"></script>
     <link rel='canonical' href='http://choinhanh.vn/game-chien-thuat/cuoc-chien-zombie'/>
