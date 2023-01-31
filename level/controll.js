@@ -1,16 +1,15 @@
 let ZName = [oZombie, oZombie2, oZombie3, oConeheadZombie, oPoleVaultingZombie, oBucketheadZombie, oFlagZombie, oFootballZombie, oNewspaperZombie, oScreenDoorZombie]
 
-ipcRenderer.on('comment', (e, data) => {
-    let arrParam = data.comment.split("-")
-    if (arrParam.length === 2 && Number.isInteger(parseInt(arrParam[0])) && Number.isInteger(parseInt(arrParam[1]))) {
-        if (parseInt(arrParam[0]) <= 5 && parseInt(arrParam[0]) >= 1 && parseInt(arrParam[1]) >= 1 && parseInt(arrParam[1]) <= 10) {
-            BirthZombie(data.nickname || "", ZName[arrParam[1] - 1], 150, arrParam[0]);
-        }
-    }
-})
+// ipcRenderer.on('comment', (e, data) => {
+//     let arrParam = data.comment.split("-")
+//     if (arrParam.length === 2 && Number.isInteger(parseInt(arrParam[0])) && Number.isInteger(parseInt(arrParam[1]))) {
+//         if (parseInt(arrParam[0]) <= 5 && parseInt(arrParam[0]) >= 1 && parseInt(arrParam[1]) >= 1 && parseInt(arrParam[1]) <= 10) {
+//             BirthZombie(data.nickname || "", ZName[arrParam[1] - 1], 150, arrParam[0]);
+//         }
+//     }
+// })
 
 document.addEventListener("keydown", function (e) {
-    console.log(e.ctrlKey + "-" + e.code);
     if (e.ctrlKey && !e.code.includes("ontrol")) {
         switch (e.code) {
             case "Digit1": {
