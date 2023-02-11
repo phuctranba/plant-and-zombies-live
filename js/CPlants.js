@@ -1,4 +1,4 @@
-var CPlants = NewO({
+const CPlants = NewO({
     name: "Plants",
     HP: 300,
     PKind: 1,
@@ -110,7 +110,10 @@ var CPlants = NewO({
         !a && ClearChild($(c));
         b.PrivateDie(b)
     }
-}), oLawnCleaner = InheritO(CPlants, {
+});
+
+
+const oLawnCleaner = InheritO(CPlants, {
     EName: "oLawnCleaner",
     CName: "Máy Cắt Cỏ",
     width: 71,
@@ -135,8 +138,12 @@ var CPlants = NewO({
             }
             b > c ? j.Die() : (j.pixelRight += 10, j.AttackedLX = b += 10, j.AttackedRX = d += 10, e.style.left = (j.pixelLeft += 10) + "px", oSym.addTask(1, arguments.callee, [j, c, b, d, h, e]))
         })(a, oS.W, a.AttackedLX, a.AttackedRX, a.R, $(a.id))
+
     }
-}), oBrains = InheritO(CPlants, {
+});
+
+
+const oBrains = InheritO(CPlants, {
     EName: "oBrains",
     CName: "脑子",
     width: 32,
@@ -151,7 +158,12 @@ var CPlants = NewO({
     PrivateBirth: function (a) {
         a.PrivateDie = oS.BrainsNum ? (a.DieStep = Math.floor(150 / oS.BrainsNum), function (d) {
             var c, b;
-            (b = --oS.BrainsNum) ? (c = b * d.DieStep, $("imgFlagHead").style.left = (c - 11) + "px", $("imgFlagMeterFull").style.clip = "rect(0,157px,21px," + c + "px)") : ($("imgFlagHead").style.left = "-1px", $("imgFlagMeterFull").style.clip = "rect(0,157px,21px,0)", oP.FlagToEnd())
+            try {
+                (b = --oS.BrainsNum) ? (c = b * d.DieStep, $("imgFlagHead").style.left = (c - 11) + "px", $("imgFlagMeterFull").style.clip = "rect(0,157px,21px," + c + "px)") : ($("imgFlagHead").style.left = "-1px", $("imgFlagMeterFull").style.clip = "rect(0,157px,21px,0)", oP.FlagToEnd())
+
+            } catch (err) {
+                console.log(err)
+            }
         }) : function (b) {
             // GameOver()
         }
@@ -159,7 +171,10 @@ var CPlants = NewO({
     GetDX: function () {
         return -40
     }
-}), oStarfruit = InheritO(CPlants, {
+});
+
+
+const oStarfruit = InheritO(CPlants, {
     EName: "oStarfruit",
     CName: "Sao trái cây",
     width: 77,
@@ -194,8 +209,12 @@ var CPlants = NewO({
                 }, [h])
             })(e)
         }
+
     }
-}), oPeashooter = InheritO(CPlants, {
+});
+
+
+const oPeashooter = InheritO(CPlants, {
     EName: "oPeashooter",
     CName: "Đậu bắn súng",
     width: 71,
@@ -215,6 +234,7 @@ var CPlants = NewO({
         a.BulletEle = null
     },
     NormalAttack: function () {
+
         var b = this, a = new b.BulletClass, c = a.id = "PB" + Math.random();
         EditEle(b.BulletEle.cloneNode(false), {id: c}, 0, EDAll);
         oGd.$B.push(a);
@@ -222,8 +242,12 @@ var CPlants = NewO({
             var d = $(e);
             d && SetBlock(d)
         }, [c])
+
     }
-}), oSnowPea = InheritO(oPeashooter, {
+});
+
+
+const oSnowPea = InheritO(oPeashooter, {
     EName: "oSnowPea",
     CName: "Đậu bắn băng",
     SunNum: 175,
@@ -231,7 +255,10 @@ var CPlants = NewO({
     PicArr: ["images/Card/Plants/SnowPea.png", "images/Card/Plants/SnowPeaG.png", "images/Plants/SnowPea/SnowPea.gif", "images/Plants/PB-10.gif", "images/Plants/PeaBulletHit.gif"],
     Tooltip: "Tác dụng chấn thương và làm chậm",
     Produce: 'Có tác dụng chấn thương và làm chậm<p>Sát thương：<font color="#FF0000">trung bình + hiệu ứng làm chậm</font></p>Có tác dụng chấn thương và làm chậm'
-}), oRepeater = InheritO(oPeashooter, {
+});
+
+
+const oRepeater = InheritO(oPeashooter, {
     EName: "oRepeater",
     CName: "Đậu súng đôi",
     width: 73,
@@ -242,6 +269,7 @@ var CPlants = NewO({
     Tooltip: "Bắn ra hai viên đậu hà lan",
     Produce: 'Đậu súng đôi bắn ra 2 viên đậu Hà Lan<p>Sát thương：<font color="#FF0000">Trung bình</font></p>',
     NormalAttack: function (b, f) {
+
         var c = this, e = c.id, a = new c.BulletClass, d = a.id = "PB" + Math.random(), f;
         EditEle(c.BulletEle.cloneNode(false), {id: d}, 0, EDAll);
         oGd.$B.push(a);
@@ -254,8 +282,12 @@ var CPlants = NewO({
             var h;
             (h = $P[j]) && h.NormalAttack(g, i)
         }, [e, b, f])
+
     }
-}), oThreepeater = InheritO(oPeashooter, {
+});
+
+
+const oThreepeater = InheritO(oPeashooter, {
     EName: "oThreepeater",
     CName: "Đậu ba súng",
     width: 73,
@@ -281,6 +313,7 @@ var CPlants = NewO({
         a.BulletEle.length = 0
     },
     NormalAttack: function () {
+
         var e = this, d = e.BulletClass, c = e.BulletEle, b, f, a = d.length;
         while (a--) {
             b = new d[a];
@@ -291,8 +324,12 @@ var CPlants = NewO({
             EditEle(c[a].cloneNode(false), {id: f}, 0, EDAll);
             oGd.$B.push(b)
         }
+
     }
-}), oGatlingPea = InheritO(oPeashooter, {
+});
+
+
+const oGatlingPea = InheritO(oPeashooter, {
     EName: "oGatlingPea",
     CName: "Gatlin 4 súng",
     width: 88,
@@ -308,11 +345,12 @@ var CPlants = NewO({
         c.BulletClass = NewO({X: b, R: c.R, D: 0, Attack: 20, Kind: c.BKind, ChangeC: 0, pixelLeft: a, F: oGd.MB1});
         c.BulletEle = NewImg(0, c.PicArr[3], "left:" + a + "px;top:" + (c.pixelTop + 8) + "px;display:none;z-index:" + (c.zIndex + 2))
     },
-    CanGrow: function (b, a, d) {
-        var c = b[1];
-        return c && c.EName == "oRepeater"
-    },
+    // CanGrow: function (b, a, d) {
+    //     var c = b[1];
+    //     return c && c.EName == "oRepeater"
+    // },
     NormalAttack: function (b, f) {
+
         var c = this, e = c.id, a = new c.BulletClass, d = a.id = "PB" + Math.random(), f;
         EditEle(c.BulletEle.cloneNode(false), {id: d}, 0, EDAll);
         oGd.$B.push(a);
@@ -325,8 +363,12 @@ var CPlants = NewO({
             var h;
             (h = $P[j]) && h.NormalAttack(g, i)
         }, [e, b, f])
+
     }
-}), oSplitPea = InheritO(oPeashooter, {
+});
+
+
+const oSplitPea = InheritO(oPeashooter, {
     EName: "oSplitPea",
     CName: "Súng hai chiều",
     width: 92,
@@ -393,6 +435,7 @@ var CPlants = NewO({
         }, [this.id, a, b])
     },
     NormalAttack: function (d, f) {
+
         var c = this, a = c.id, b = new c.BulletClass[d], e = b.id = "PB" + Math.random();
         oGd.$B.push(b);
         EditEle(c.BulletEle[d].cloneNode(false), {id: e}, 0, EDAll);
@@ -404,8 +447,12 @@ var CPlants = NewO({
             var h = $P[g];
             h && h.NormalAttack(1, 1)
         }, [a])
+
     }
-}), oSunFlower = InheritO(CPlants, {
+});
+
+
+const oSunFlower = InheritO(CPlants, {
     EName: "oSunFlower",
     CName: "Hoa mặt trời",
     width: 73,
@@ -440,7 +487,10 @@ var CPlants = NewO({
     },
     InitTrigger: function () {
     }
-}), oTwinSunflower = InheritO(oSunFlower, {
+});
+
+
+const oTwinSunflower = InheritO(oSunFlower, {
     EName: "oTwinSunflower",
     CName: "Hoa mặt trời đôi",
     width: 83,
@@ -461,7 +511,10 @@ var CPlants = NewO({
             $P[f] && (AppearSun(d, e, 25, 0), AppearSun(c, e, 25, 0), oSym.addTask(2400, arguments.callee, [f, d, c, e]))
         }, [a.id, b - 10, b + 10, GetY(a.R)])
     }
-}), oPumpkinHead = InheritO(CPlants, {
+});
+
+
+const oPumpkinHead = InheritO(CPlants, {
     EName: "oPumpkinHead",
     CName: "Đầu bí ngô",
     width: 97,
@@ -485,6 +538,7 @@ var CPlants = NewO({
     },
     HurtStatus: 0,
     getHurt: function (e, c, b) {
+
         var d = this, f = d.id, a = $(f);
         switch (true) {
             case c && c < 3:
@@ -494,11 +548,22 @@ var CPlants = NewO({
                 d.Die();
                 break;
             case d.HP < 1334:
-                d.HurtStatus < 2 && (d.HurtStatus = 2, a.childNodes[1].src = "images/Plants/PumpkinHead/pumpkin_damage2.gif");
+                try {
+                    d.HurtStatus < 2 && (d.HurtStatus = 2, a.childNodes[1].src = "images/Plants/PumpkinHead/pumpkin_damage2.gif");
+
+                } catch (err) {
+                    console.log(err)
+                }
                 break;
             case d.HP < 2667:
-                d.HurtStatus < 1 && (d.HurtStatus = 1, a.childNodes[1].src = "images/Plants/PumpkinHead/pumpkin_damage1.gif", $(f + "_2").src = "images/Plants/PumpkinHead/Pumpkin_back.gif")
+                try {
+                    d.HurtStatus < 1 && (d.HurtStatus = 1, a.childNodes[1].src = "images/Plants/PumpkinHead/pumpkin_damage1.gif", $(f + "_2").src = "images/Plants/PumpkinHead/Pumpkin_back.gif")
+
+                } catch (err) {
+                    console.log(err)
+                }
         }
+
     },
     InitTrigger: function () {
     },
@@ -508,9 +573,14 @@ var CPlants = NewO({
         NewImg(d + "_2", "images/Plants/PumpkinHead/PumpkinHead2.gif", "left:" + c.pixelLeft + "px;top:" + c.pixelTop + "px;z-index:" + (c.zIndex - 2), EDAll)
     },
     PrivateDie: function (a) {
+
         ClearChild($(a.id + "_2"))
+
     }
-}), oFlowerPot = InheritO(CPlants, {
+});
+
+
+const oFlowerPot = InheritO(CPlants, {
     EName: "oFlowerPot",
     CName: "Bình cắm hoa",
     width: 72,
@@ -531,7 +601,10 @@ var CPlants = NewO({
     Produce: 'Cho phép bạn trồng cây trên mái nhà<p>Tính năng: <font color="#FF0000">Giúp bạn trồng cây trên mái nhà</font></p>“Bình cắm hoa',
     InitTrigger: function () {
     }
-}), oLilyPad = InheritO(oFlowerPot, {
+});
+
+
+const oLilyPad = InheritO(oFlowerPot, {
     EName: "oLilyPad",
     CName: "Hoa lily",
     width: 79,
@@ -544,7 +617,10 @@ var CPlants = NewO({
     },
     Tooltip: "Làm cho cây trồng không phát triển trên nó",
     Produce: 'Hoa Lily làm cho cây trồng không phát triển<p>Tính năng: <font color="#FF0000">Cây trồng không thể trồng trên đó<br>Phải được trồng trong nước'
-}), oPotatoMine = InheritO(CPlants, {
+});
+
+
+const oPotatoMine = InheritO(CPlants, {
     EName: "oPotatoMine",
     CName: "Boom khoai tây",
     width: 75,
@@ -567,13 +643,20 @@ var CPlants = NewO({
         EditEle(b, {id: d}, a, EDAll)
     },
     PrivateBirth: function (a) {
+
         oSym.addTask(1500, function (c) {
             var b = $P[c];
-            b && ($(c).childNodes[1].src = "images/Plants/PotatoMine/PotatoMine.gif", b.Status = 1, b.canTrigger = 1, b.getHurt = function (g, e, d) {
-                var f = this;
-                e > 2 ? (f.HP -= d) < 1 && f.Die() : f.NormalAttack(f.pixelLeft, f.pixelLeft + f.width, f.R)
-            })
+            try {
+                b && ($(c).childNodes[1].src = "images/Plants/PotatoMine/PotatoMine.gif", b.Status = 1, b.canTrigger = 1, b.getHurt = function (g, e, d) {
+                    var f = this;
+                    e > 2 ? (f.HP -= d) < 1 && f.Die() : f.NormalAttack(f.pixelLeft, f.pixelLeft + f.width, f.R)
+                })
+            } catch (err) {
+                console.log(err)
+            }
+
         }, [a.id])
+
     },
     getTriggerRange: function (a, b, c) {
         return [[b, c, 0]]
@@ -583,24 +666,34 @@ var CPlants = NewO({
         e.beAttacked && e.Altitude < 2 && !oGd.$[a + "_" + b + "_2"] && this.NormalAttack(this.pixelLeft, this.pixelLeft + this.width, this.R)
     },
     NormalAttack: function (k, j, f) {
+
         var h = this, b = h.id, d = $(b), c = oZ.getArZ(k, j, f), g = c.length, a, l = h.pixelLeft, e = h.pixelTop;
         while (g--) {
             (a = c[g]).Altitude < 2 && a.getHurt(0, 0, 1800, 0, 0, 0, 2)
         }
         h.Die(1);
-        EditEle(d.childNodes[1], {src: "images/Plants/PotatoMine/PotatoMine_mashed.gif"}, {
-            width: "132px",
-            height: "93px",
-            left: "-40px",
-            top: "-20px"
-        });
+        try {
+            EditEle(d.childNodes[1], {src: "images/Plants/PotatoMine/PotatoMine_mashed.gif"}, {
+                width: "132px",
+                height: "93px",
+                left: "-40px",
+                top: "-20px"
+            });
+        } catch (err) {
+            console.log(err)
+        }
+
         NewImg(0, "images/Plants/PotatoMine/ExplosionSpudow.gif", "left:-90px;top:-40px", d);
         oSym.addTask(200, function (i) {
             ClearChild(i.lastChild);
             oSym.addTask(100, ClearChild, [i])
         }, [d])
+
     }
-}), oTorchwood = InheritO(CPlants, {
+});
+
+
+const oTorchwood = InheritO(CPlants, {
     EName: "oTorchwood",
     CName: "Gốc cây cháy",
     width: 73,
@@ -618,7 +711,10 @@ var CPlants = NewO({
     PrivateDie: function (a) {
         delete oGd.$Torch[a.R + "_" + a.C]
     }
-}), oWallNut = InheritO(CPlants, {
+});
+
+
+const oWallNut = InheritO(CPlants, {
     EName: "oWallNut",
     CName: "Hạt dào cản",
     width: 65,
@@ -638,10 +734,17 @@ var CPlants = NewO({
     },
     HurtStatus: 0,
     getHurt: function (e, b, a) {
-        var c = this, d = $(c.id).childNodes[1];
-        !(b % 3) ? (c.HP -= a) < 1 ? c.Die() : c.HP < 1334 ? c.HurtStatus < 2 && (c.HurtStatus = 2, d.src = "images/Plants/WallNut/Wallnut_cracked2.gif") : c.HP < 2667 && c.HurtStatus < 1 && (c.HurtStatus = 1, d.src = "images/Plants/WallNut/Wallnut_cracked1.gif") : c.Die(1)
-    }
-}), oTallNut = InheritO(oWallNut, {
+        try{
+            var c = this, d = $(c.id).childNodes[1];
+            !(b % 3) ? (c.HP -= a) < 1 ? c.Die() : c.HP < 1334 ? c.HurtStatus < 2 && (c.HurtStatus = 2, d.src = "images/Plants/WallNut/Wallnut_cracked2.gif") : c.HP < 2667 && c.HurtStatus < 1 && (c.HurtStatus = 1, d.src = "images/Plants/WallNut/Wallnut_cracked1.gif") : c.Die(1)
+        }catch (err){
+            console.log(err)
+        }
+        }
+});
+
+
+const oTallNut = InheritO(oWallNut, {
     EName: "oTallNut",
     CName: "Rào cản cao",
     width: 83,
@@ -658,10 +761,19 @@ var CPlants = NewO({
     },
     Stature: 1,
     getHurt: function (e, b, a) {
-        var c = this, d = $(c.id).childNodes[1];
-        !(b % 3) ? (c.HP -= a) < 1 ? c.Die() : c.HP < 2667 ? c.HurtStatus < 2 && (c.HurtStatus = 2, d.src = "images/Plants/TallNut/TallnutCracked2.gif") : c.HP < 5333 && c.HurtStatus < 1 && (c.HurtStatus = 1, d.src = "images/Plants/TallNut/TallnutCracked1.gif") : c.Die(1)
+        try{
+            var c = this, d = $(c.id).childNodes[1];
+            !(b % 3) ? (c.HP -= a) < 1 ? c.Die() : c.HP < 2667 ? c.HurtStatus < 2 && (c.HurtStatus = 2, d.src = "images/Plants/TallNut/TallnutCracked2.gif") : c.HP < 5333 && c.HurtStatus < 1 && (c.HurtStatus = 1, d.src = "images/Plants/TallNut/TallnutCracked1.gif") : c.Die(1)
+
+        }catch (err){
+            console.log(err)
+        }
+
     }
-}), oCherryBomb = InheritO(CPlants, {
+});
+
+
+const oCherryBomb = InheritO(CPlants, {
     EName: "oCherryBomb",
     CName: "Boom dâu tây",
     width: 112,
@@ -677,6 +789,7 @@ var CPlants = NewO({
     getHurt: function () {
     },
     PrivateBirth: function (a) {
+
         oSym.addTask(63, function (b) {
             var c = $P[b];
             if (c) {
@@ -689,17 +802,26 @@ var CPlants = NewO({
                     }
                 } while (g++ < e);
                 c.Die(1);
-                EditEle(f.childNodes[1], {src: "images/Plants/CherryBomb/Boom.gif"}, {
-                    width: "213px",
-                    height: "160px",
-                    left: "-50px",
-                    top: "-30px"
-                });
+                try{
+                    EditEle(f.childNodes[1], {src: "images/Plants/CherryBomb/Boom.gif"}, {
+                        width: "213px",
+                        height: "160px",
+                        left: "-50px",
+                        top: "-30px"
+                    });
+                }catch (err){
+                    console.log(err)
+                }
+
                 oSym.addTask(65, ClearChild, [f])
             }
         }, [a.id])
+
     }
-}), oJalapeno = InheritO(oCherryBomb, {
+});
+
+
+const oJalapeno = InheritO(oCherryBomb, {
     EName: "oJalapeno",
     CName: "Ớt nóng",
     width: 68,
@@ -709,6 +831,7 @@ var CPlants = NewO({
     Tooltip: "Tiêu diệt những kẻ thù theo toàn bộ dây chuyền",
     Produce: 'Ớt nóng phá hủy một dòng kẻ thù<p>Sát thương: <font color="#FF0000">Cao</font><br>Phạm vi: <font color="#FF0000">Toàn bộ dây chuyền của zombies</font><br>Sử dụng: <font color="#FF0000">Sử dụng một mình, với hiệu lực ngay lập tức</font></p>Ớt nóng',
     PrivateBirth: function (a) {
+
         oSym.addTask(72, function (g) {
             var f = $P[g];
             if (f) {
@@ -717,17 +840,26 @@ var CPlants = NewO({
                     c[d].getHurt(0, 0, 1800, 0, 0, 0, 1)
                 }
                 f.Die(1);
-                EditEle(b.childNodes[1], {src: "images/Plants/Jalapeno/JalapenoAttack.gif"}, {
-                    width: "755px",
-                    height: "131px",
-                    left: 120 - f.pixelLeft + "px",
-                    top: "-42px"
-                });
+                try{
+                    EditEle(b.childNodes[1], {src: "images/Plants/Jalapeno/JalapenoAttack.gif"}, {
+                        width: "755px",
+                        height: "131px",
+                        left: 120 - f.pixelLeft + "px",
+                        top: "-42px"
+                    });
+                }catch (err){
+                    console.log(err)
+                }
+
                 oSym.addTask(135, ClearChild, [b])
             }
         }, [a.id])
+
     }
-}), oSpikeweed = InheritO(CPlants, {
+});
+
+
+const oSpikeweed = InheritO(CPlants, {
     EName: "oSpikeweed",
     CName: "Bẫy chuông",
     width: 85,
@@ -769,7 +901,10 @@ var CPlants = NewO({
     AttackCheck2: function (a) {
         return a.Altitude == 1 && a.beAttacked
     }
-}), oSpikerock = InheritO(oSpikeweed, {
+});
+
+
+const oSpikerock = InheritO(oSpikeweed, {
     EName: "oSpikerock",
     CName: "Bẫy chuông lớn",
     width: 84,
@@ -800,7 +935,10 @@ var CPlants = NewO({
         }
         (this.HP -= a) < 1 && this.Die()
     }
-}), oGarlic = InheritO(CPlants, {
+});
+
+
+const oGarlic = InheritO(CPlants, {
     EName: "oGarlic",
     CName: "Tỏi",
     width: 60,
@@ -819,10 +957,19 @@ var CPlants = NewO({
     },
     HurtStatus: 0,
     getHurt: function (e, b, a) {
-        var c = this, d = $(c.id).childNodes[1];
-        !(b % 3) ? (c.HP -= 20) < 1 ? c.Die() : (e.ChangeR({R: c.R}), c.HP < 134 ? c.HurtStatus < 2 && (c.HurtStatus = 2, d.src = "images/Plants/Garlic/Garlic_body3.gif") : c.HP < 267 && c.HurtStatus < 1 && (c.HurtStatus = 1, d.src = "images/Plants/Garlic/Garlic_body2.gif")) : c.Die(1)
+        try{
+            var c = this, d = $(c.id).childNodes[1];
+            !(b % 3) ? (c.HP -= 20) < 1 ? c.Die() : (e.ChangeR({R: c.R}), c.HP < 134 ? c.HurtStatus < 2 && (c.HurtStatus = 2, d.src = "images/Plants/Garlic/Garlic_body3.gif") : c.HP < 267 && c.HurtStatus < 1 && (c.HurtStatus = 1, d.src = "images/Plants/Garlic/Garlic_body2.gif")) : c.Die(1)
+
+        }catch (err){
+            console.log(err)
+        }
+
     }
-}), oSquash = InheritO(CPlants, {
+});
+
+
+const oSquash = InheritO(CPlants, {
     EName: "oSquash",
     CName: "Bí",
     width: 100,
@@ -844,17 +991,25 @@ var CPlants = NewO({
         return [[b - 50, c + 80, 0]]
     },
     TriggerCheck: function (h, g, e) {
+
         var c = h.ZX, b = this.id, a = $(b).childNodes[1], f = h.isAttacking;
         h.beAttacked && h.Altitude > -1 && h.Altitude < 2 && (f || !f && c - this.AttackedRX < 71) && (oT.$[this.R].splice(e, 1), a.src = c > this.AttackedRX ? "images/Plants/Squash/SquashR.png" : "images/Plants/Squash/SquashL.png", oSym.addTask(100, function (d, j, i) {
             var k = $P[d];
             k && k.NormalAttack(k, h.id, i)
         }, [b, h.id, h.ZX + h.Speed * 4 * (!h.WalkDirection ? -1 : 1) - 50]))
+
     },
     NormalAttack: function (d, c, b) {
+
         var a = $(d.id), e = $Z[c];
         e && (b = e.ZX + e.Speed * 4 * (!e.WalkDirection ? -1 : 1) - 50);
-        a.childNodes[1].src = "images/Plants/Squash/SquashAttack.gif" + $Random + Math.random();
-        SetStyle(a, {left: b + "px"});
+        try{
+            a.childNodes[1].src = "images/Plants/Squash/SquashAttack.gif" + $Random + Math.random();
+            SetStyle(a, {left: b + "px"});
+        }catch (err){
+            console.log(err)
+        }
+
         d.Die(1);
         oSym.addTask(45, function (f, l, j) {
             var g = oZ.getArZ(l, l + 100, j), h = g.length, k;
@@ -863,8 +1018,12 @@ var CPlants = NewO({
             }
             oSym.addTask(185, ClearChild, [f])
         }, [a, b, d.R])
+
     }
-}), oChomper = InheritO(CPlants, {
+});
+
+
+const oChomper = InheritO(CPlants, {
     EName: "oChomper",
     CName: "Hoa ăn thịt",
     width: 130,
@@ -890,22 +1049,41 @@ var CPlants = NewO({
         return a.Altitude == 1 && a.beAttacked
     },
     NormalAttack: function (a, b) {
-        $(a).childNodes[1].src = "images/Plants/Chomper/ChomperAttack.gif" + $Random + Math.random();
+        try{
+            $(a).childNodes[1].src = "images/Plants/Chomper/ChomperAttack.gif" + $Random + Math.random();
+        }catch (err){
+            console.log(err)
+        }
+
         oSym.addTask(70, function (c, d) {
             var e;
             $P[c] && ((e = $Z[d]) && e.beAttacked ? oSym.addTask(18, function (f) {
                 var g = $P[f];
-                g && ($(f).childNodes[1].src = e.getRaven(f) ? (oSym.addTask(4200, function (h) {
-                    var i = $P[h];
-                    i && (i.canTrigger = 1, $(h).childNodes[1].src = "images/Plants/Chomper/Chomper.gif")
-                }, [f]), "images/Plants/Chomper/ChomperDigest.gif") : (g.canTrigger = 1, "images/Plants/Chomper/Chomper.gif"))
+                try{
+                    g && ($(f).childNodes[1].src = e.getRaven(f) ? (oSym.addTask(4200, function (h) {
+                        var i = $P[h];
+                        i && (i.canTrigger = 1, $(h).childNodes[1].src = "images/Plants/Chomper/Chomper.gif")
+                    }, [f]), "images/Plants/Chomper/ChomperDigest.gif") : (g.canTrigger = 1, "images/Plants/Chomper/Chomper.gif"))
+                }catch (err){
+                    console.log(err)
+                }
+
             }, [c]) : oSym.addTask(18, function (f) {
                 var g = $P[f];
-                g && (g.canTrigger = 1, $(f).childNodes[1].src = "images/Plants/Chomper/Chomper.gif")
+                try{
+                    g && (g.canTrigger = 1, $(f).childNodes[1].src = "images/Plants/Chomper/Chomper.gif")
+                }catch (err){
+                    console.log(err)
+                }
+
             }, [c]))
         }, [a, b])
+
     }
-}), oFumeShroom = InheritO(CPlants, {
+});
+
+
+const oFumeShroom = InheritO(CPlants, {
     EName: "oFumeShroom",
     CName: "Nấm phun",
     width: 100,
@@ -931,26 +1109,43 @@ var CPlants = NewO({
         NewEle(a + "_Bullet", "div", "position:absolute;display:none;width:343px;height:62px;left:" + b.AttackedRX + "px;top:" + (b.pixelTop + 5) + "px;background:url(images/Plants/FumeShroom/FumeShroomBullet.gif);z-index:" + (b.zIndex + 1), 0, EDAll)
     },
     PrivateDie: function (a) {
+
         ClearChild($(a.id + "_Bullet"))
+
     },
     getTriggerRange: function (a, b, c) {
         return [[b, Math.min(c + 330, 900), 0]]
     },
     NormalAttack: function () {
+
         var f = this, d = oZ.getArZ(f.AttackedLX, Math.min(f.AttackedRX + 330, 900), f.R), e = d.length, g, c = f.id,
             b = $(c), a = c + "_Bullet";
         while (e--) {
             (g = d[e]).Altitude < 2 && g.getHurt(0, 0, 20, 0, 0, 0, 0)
         }
-        b.childNodes[1].src = "images/Plants/FumeShroom/FumeShroomAttack.gif";
+        try{
+            b.childNodes[1].src = "images/Plants/FumeShroom/FumeShroomAttack.gif";
+        }catch (err){
+            console.log(err)
+        }
+
         SetBlock($(a));
         ImgSpriter(a, c, [["0 0", 90, 1], ["0 -62px", 90, 2], ["0 -124px", 90, 3], ["0 -186px", 90, 4], ["0 -248px", 90, 5], ["0 -310px", 90, 6], ["0 -372px", 90, 7], ["0 -434px", 90, -1]], 0, function (i, j) {
             var h = $(j);
-            $P[j] && (h.childNodes[1].src = "images/Plants/FumeShroom/FumeShroom.gif");
+            try{
+                $P[j] && (h.childNodes[1].src = "images/Plants/FumeShroom/FumeShroom.gif");
+            }catch (err){
+                console.log(err)
+            }
+
             SetNone($(i))
         })
+
     }
-}), oCoffeeBean = InheritO(CPlants, {
+});
+
+
+const oCoffeeBean = InheritO(CPlants, {
     EName: "oCoffeeBean",
     CName: "Hạt cafe",
     width: 39,
@@ -979,13 +1174,23 @@ var CPlants = NewO({
         EditEle(b, {id: d}, a, EDAll)
     },
     PrivateBirth: function (a) {
+
         oSym.addTask(240, function (c) {
             var d = oGd.$[c], b;
-            d && (b = d.WakeUP, (!b ? ($(d.id).childNodes[1].src = d.PicArr[d.NormalGif], d.canTrigger = 1, d.Sleep = 0) : b(d)));
+            try{
+                d && (b = d.WakeUP, (!b ? ($(d.id).childNodes[1].src = d.PicArr[d.NormalGif], d.canTrigger = 1, d.Sleep = 0) : b(d)));
+
+            }catch (err){
+                console.log(err)
+            }
             a.Die()
         }, [a.R + "_" + a.C + "_1"])
+
     }
-}), oGloomShroom = InheritO(oFumeShroom, {
+});
+
+
+const oGloomShroom = InheritO(oFumeShroom, {
     EName: "oGloomShroom",
     CName: "Gloom",
     width: 88,
@@ -1010,7 +1215,9 @@ var CPlants = NewO({
         NewEle(a + "_Bullet", "div", "position:absolute;display:none;width:210px;height:200px;left:" + (b.pixelLeft - 60) + "px;top:" + (b.pixelTop - 65) + "px;background:url(images/Plants/GloomShroom/GloomShroomBullet.gif);z-index:" + (b.zIndex + 1), 0, EDAll)
     },
     PrivateDie: function (a) {
+
         ClearChild($(a.id + "_Bullet"))
+
     },
     getTriggerRange: function (c, d, e) {
         var f = GetX(this.C), b = this.MinX = f - 120, a = this.MaxX = f + 120;
@@ -1021,21 +1228,36 @@ var CPlants = NewO({
         return [b, a]
     },
     NormalAttack: function () {
+
         var k = this, g, f = k.MaxR, c = k.MinX, b = k.MaxX, e, h, a, j = k.id, d = $(j), l = j + "_Bullet";
         for (g = k.MinR; g <= f; g++) {
             e = oZ.getArZ(c, b, g);
             for (h = e.length; h--; (a = e[h]).Altitude < 2 && a.getHurt(0, 0, 80, 0, 0, 0, 0)) {
             }
         }
-        d.childNodes[1].src = "images/Plants/GloomShroom/GloomShroomAttack.gif";
+        try{
+            d.childNodes[1].src = "images/Plants/GloomShroom/GloomShroomAttack.gif";
+        }catch (err){
+            console.log(err)
+        }
+
         SetBlock($(l));
         ImgSpriter(l, j, [["0 0", 90, 1], ["0 -200px", 90, 2], ["0 -400px", 90, 3], ["0 -600px", 90, 4], ["0 -800px", 90, 5], ["0 -1000px", 90, 6], ["0 -1200px", 90, 7], ["0 -1400px", 90, 8], ["0 -1600px", 90, 9], ["0 -1800px", 90, 10], ["0 -2000px", 90, 11], ["0 -2200px", 90, -1]], 0, function (m, n) {
             var i = $(n);
-            $P[n] && (i.childNodes[1].src = "images/Plants/GloomShroom/GloomShroom.gif");
+            try{
+                $P[n] && (i.childNodes[1].src = "images/Plants/GloomShroom/GloomShroom.gif");
+            }catch (err){
+                console.log(err)
+            }
+
             SetNone($(m))
         })
+
     }
-}), oPuffShroom = InheritO(oFumeShroom, {
+});
+
+
+const oPuffShroom = InheritO(oFumeShroom, {
     EName: "oPuffShroom",
     CName: "Nấm phu nhỏ",
     width: 40,
@@ -1060,6 +1282,7 @@ var CPlants = NewO({
         a.BulletEle = null
     },
     NormalAttack: function () {
+
         var b = this, a = new b.BulletClass, c = a.id = "PSB" + Math.random();
         EditEle(b.BulletEle.cloneNode(false), {id: c}, 0, EDAll);
         oGd.$B.push(a);
@@ -1067,8 +1290,12 @@ var CPlants = NewO({
             var d = $(e);
             d && SetBlock(d)
         }, [c])
+
     }
-}), oScaredyShroom = InheritO(oFumeShroom, {
+});
+
+
+const oScaredyShroom = InheritO(oFumeShroom, {
     EName: "oScaredyShroom",
     CName: "Nấm nhút nhát",
     width: 57,
@@ -1088,8 +1315,15 @@ var CPlants = NewO({
         return [b, a]
     },
     TriggerCheck: function (e, c) {
+
         var b = this, a = b.id;
-        Math.abs(e.ZX - b.MX) < 121 && e.beAttacked ? (b.ArZ.push(e.id), !b.Cry && (b.Cry = 1, $(a).childNodes[1].src = "images/Plants/ScaredyShroom/ScaredyShroomCry.gif", b.CryCheck(a))) : (!b.Cry && !b.Attacking && e.Altitude > 0 && e.Altitude < 3 && b.NormalAttack())
+        try{
+            Math.abs(e.ZX - b.MX) < 121 && e.beAttacked ? (b.ArZ.push(e.id), !b.Cry && (b.Cry = 1, $(a).childNodes[1].src = "images/Plants/ScaredyShroom/ScaredyShroomCry.gif", b.CryCheck(a))) : (!b.Cry && !b.Attacking && e.Altitude > 0 && e.Altitude < 3 && b.NormalAttack())
+
+        }catch (err){
+            console.log(err)
+        }
+
     },
     PrivateBirth: function (c) {
         var b = c.AttackedLX, a = b - 46;
@@ -1101,6 +1335,7 @@ var CPlants = NewO({
         a.BulletEle = null
     },
     NormalAttack: function () {
+
         var c = this, a = c.id, b = new c.BulletClass, d = b.id = "SSB" + Math.random();
         EditEle(c.BulletEle.cloneNode(false), {id: d}, 0, EDAll);
         oGd.$B.push(b);
@@ -1113,8 +1348,10 @@ var CPlants = NewO({
                 i && (i.Attacking = 0)
             }, [e])
         }, [d, a])
+
     },
     CryCheck: function (a) {
+
         oSym.addTask(140, function (b) {
             var d = $P[b], c, f, e;
             if (d) {
@@ -1122,11 +1359,20 @@ var CPlants = NewO({
                 while (c--) {
                     (!(e = $Z[f[c]]) || Math.abs(e.ZX - d.MX) > 120) && f.splice(c, 1)
                 }
-                f.length ? d.CryCheck(b) : (d.Cry = 0, $(b).childNodes[1].src = "images/Plants/ScaredyShroom/ScaredyShroom.gif")
+                try{
+                    f.length ? d.CryCheck(b) : (d.Cry = 0, $(b).childNodes[1].src = "images/Plants/ScaredyShroom/ScaredyShroom.gif")
+
+                }catch (err){
+                    console.log(err)
+                }
             }
         }, [a])
+
     }
-}), oSunShroom = InheritO(oFumeShroom, {
+});
+
+
+const oSunShroom = InheritO(oFumeShroom, {
     EName: "oSunShroom",
     CName: "Nấm quyến rũ",
     width: 59,
@@ -1148,14 +1394,21 @@ var CPlants = NewO({
     PrivateBirth: function () {
     },
     BirthStyle: function (c, d, b, a) {
+
         oS.DKind ? (c.canTrigger = 0, c.Sleep = 1, b.childNodes[1].src = "images/Plants/SunShroom/SunShroomSleep.gif") : (oSym.addTask(600, function (h, g, f) {
             var e = $P[h];
             e && e.ProduceSun(e, g, f)
         }, [d, GetX(c.C) - 40, GetY(c.R)]), oSym.addTask(12000, function (f) {
             var e = $P[f];
-            e && (e.Sleep = 0, $(f).childNodes[1].src = "images/Plants/SunShroom/SunShroom.gif", e.Status = 1)
+            try{
+                e && (e.Sleep = 0, $(f).childNodes[1].src = "images/Plants/SunShroom/SunShroom.gif", e.Status = 1)
+
+            }catch (err){
+                console.log(err)
+            }
         }, [d]));
         EditEle(b, {id: d}, a, EDAll)
+
     },
     ProduceSun: function (a, c, b) {
         AppearSun(Math.floor(c + Math.random() * 41), b, !a.Status ? 15 : 25, 0), oSym.addTask(2400, function (g, f, e) {
@@ -1164,13 +1417,25 @@ var CPlants = NewO({
         }, [a.id, c, b])
     },
     WakeUP: function (a) {
+
         var b = a.id;
         a.ProduceSun(a, GetX(a.C) - 40, GetY(a.R));
-        $(b).childNodes[1].src = "images/Plants/SunShroom/SunShroom2.gif";
+        try{
+            $(b).childNodes[1].src = "images/Plants/SunShroom/SunShroom2.gif";
+
+        }catch (err){
+            console.log(err)
+        }
         a.Sleep = 0;
         oSym.addTask(12000, function (d) {
             var c = $P[d];
-            c && ($(d).childNodes[1].src = "images/Plants/SunShroom/SunShroom.gif", c.Status = 1)
+            try{
+                c && ($(d).childNodes[1].src = "images/Plants/SunShroom/SunShroom.gif", c.Status = 1)
+
+            }catch (err){
+                console.log(err)
+            }
         }, [b])
+
     }
 });

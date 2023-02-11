@@ -1,5 +1,5 @@
 oS.Init({
-    PName: [oPeashooter, oSnowPea, oThreepeater, oGatlingPea, oSplitPea, oPotatoMine, oWallNut, oTallNut, oSpikeweed, oSpikerock, oSquash, oChomper, oJalapeno, oCherryBomb, oTorchwood, oPumpkinHead],
+    PName: [oPeashooter, oPeashooter, oPeashooter, oPeashooter, oPeashooter, oSnowPea, oSnowPea, oSnowPea, oThreepeater, oGatlingPea, oSplitPea, oPotatoMine, oPotatoMine, oPotatoMine, oPotatoMine, oPotatoMine, oSquash, oSquash, oSquash, oSquash, oSquash, oChomper, oChomper, oChomper, oChomper, oChomper, oCherryBomb, oCherryBomb, oCherryBomb, oCherryBomb, oCherryBomb, oCherryBomb, oCherryBomb, oCherryBomb, oCherryBomb, oCherryBomb, oJalapeno],
     ZName: [oZombie, oZombie2, oZombie3, oConeheadZombie, oPoleVaultingZombie, oBucketheadZombie, oFlagZombie, oFootballZombie, oNewspaperZombie, oScreenDoorZombie],
     PicArr: ["images/interface/background1.jpg", "images/interface/trophy.png"],
     backgroundImage: "images/interface/background1.jpg",
@@ -7,117 +7,35 @@ oS.Init({
     LevelName: "Bài 1-10",
     LargeWaveFlag: {10: $("imgFlag3"), 20: $("imgFlag1")},
     StaticCard: 0,
-    maxOfArea: 30,
+    maxOfAreaToRandom: 25,
+    maxOfIndexPlantToRandom: 31,
     LoadMusic: function () {
         NewEle("oEmbed", "embed", "width:0;height:0", {src: "music/Look up at the.mp3"}, EDAll)
     },
     StartGame: function () {
+        NewImg("sodRow1", "images/interface/redRow1.png", "left: 67px;z-index: 1;visibility: visible;", EDAll);
+        NewImg("sodRow2", "images/interface/redRow2.png", "left: 85px;top: 129px;z-index: 2;visibility: hidden;", EDAll);
+        NewImg("sodRow3", "images/interface/redRow3.png", "left: 97px;top: 242px;z-index: 3;visibility: hidden;", EDAll);
+        NewImg("sodRow4", "images/interface/redRow4.png", "left: 73px;top: 329px;z-index: 4;visibility: hidden;", EDAll);
+        NewImg("sodRow5", "images/interface/redRow5.png", "left: 67px;top: 416px;z-index: 5;visibility: hidden;", EDAll);
         ClearChild($("oEmbed"));
         NewEle("oEmbed", "embed", "width:0;height:0", {src: "music/UraniwaNi.mp3"}, EDAll);
-        SetVisible($("tdShovel"), $("dFlagMeter"));
-        SetNone($("dSunNum"));
-        oS.InitLawnMower();
 
-        let arrLocation = [
-            [175, 187],
-            [270, 187],
-            [380, 187],
-            [470, 187],
-            [575, 187],
-            [175, 267],
-            [270, 267],
-            [380, 267],
-            [470, 267],
-            [575, 267],
-            [175, 347],
-            [270, 347],
-            [380, 347],
-            [470, 347],
-            [575, 347],
-            [175, 427],
-            [270, 427],
-            [380, 427],
-            [470, 427],
-            [575, 427],
-            [175, 507],
-            [270, 507],
-            [380, 507],
-            [470, 507],
-            [575, 507],
-            [175, 587],
-            [270, 587],
-            [380, 587],
-            [470, 587],
-            [575, 587],
-        ];
-        let arrIndex = [
-            [1, 1],
-            [2, 1],
-            [3, 1],
-            [4, 1],
-            [5, 1],
-            [1, 2],
-            [2, 2],
-            [3, 2],
-            [4, 2],
-            [5, 2],
-            [1, 3],
-            [2, 3],
-            [3, 3],
-            [4, 3],
-            [5, 3],
-            [1, 4],
-            [2, 4],
-            [3, 4],
-            [4, 4],
-            [5, 4],
-            [1, 5],
-            [2, 5],
-            [3, 5],
-            [4, 5],
-            [5, 5],
-            [1, 6],
-            [2, 6],
-            [3, 6],
-            [4, 6],
-            [5, 6]
-        ];
+        timeoutAutoBornZombie = setTimeout(() => {
+            let randomFakeUser = fakeUser[Math.floor(Math.random() * fakeUser.length)];
+            let randomFakeZombie = ZNameFake[Math.floor(Math.random() * ZNameFake.length)];
+            BirthZombie(randomFakeUser.userId, randomFakeZombie.prototype.Lvl !== 1, randomFakeUser.name, randomFakeUser.avatar, randomFakeZombie, randomFakeZombie.prototype.Lvl === 1 ? 1 : 5);
+        }, CONFIG.MAX_TIME_AUTO_BORN_ZOMBIE)
 
-        let intervalGrowPlant = setInterval(() => {
-            let index = Math.floor(Math.random() * oS.maxOfArea);
+        setInterval(() => {
+            autoZombieRowIndex = Math.floor(Math.random() * 5) + 1;
+            SetHidden($("sodRow" + currentRowIndex));
+            SetVisible($("sodRow" + autoZombieRowIndex));
 
-            let plantPrototype = oS.PName[index % 12].prototype;
-            if (plantPrototype.CanGrow([undefined, undefined, undefined, undefined], arrIndex[index][0], arrIndex[index][1])) {
-                (new oS.PName[index % 16]).Birth(arrLocation[index][1], arrLocation[index][0], arrIndex[index][0], arrIndex[index][1], [undefined, undefined, undefined, undefined]);
-
-                SetStyle($("imgGrowSoil"), {
-                    left: arrLocation[index][1] - 30 + "px",
-                    top: arrLocation[index][0] - 40 + "px",
-                    zIndex: 3 * arrIndex[index][0],
-                    display: "block"
-                });
-                oSym.addTask(20, SetNone, [$("imgGrowSoil")]);
-
-                // arrLocation.splice(index, 1);
-                // arrIndex.splice(index, 1);
-            } else {
-
-            }
-            //
-            // oS.maxOfArea = oS.maxOfArea - 1;
-            // if (oS.maxOfArea === 11) {
-            //     clearInterval(intervalGrowPlant)
-            // }
-        }, 3000)
-
-        // let intervalCreateZombie = setInterval(() => {
-        //     let index = Math.floor(Math.random() * oS.ZName.length);
-        //     let nameZombie = randomString(10);
-        //     let laneIndex = Math.floor(Math.random() * 5) + 1;
-        //
-        //     BirthZombie(nameZombie, oS.ZName[index], 150, laneIndex);
-        // }, 3000)
-
+            setTimeout(() => {
+                currentRowIndex = autoZombieRowIndex;
+            }, CONFIG.DELAY_ROW_INDEX_LOGIC)
+        }, CONFIG.RANDOM_ROW_INDEX)
 
         PrepareGrowPlants(function () {
             oP.Monitor({

@@ -58,7 +58,6 @@
             width: 900px;
             height: 600px;
             OVERFLOW: hidden;
-            border: 3px outset;
         }
 
         #dFlagMeterTitleB {
@@ -348,14 +347,257 @@
             height: 91px;
             background: url(images/interface/Tombstone_mounds.png) no-repeat
         }
+
+        .zoom-in-box {
+            animation: zoom-in 1s ease;
+        }
+
+        @keyframes zoom-in {
+            0% {
+                transform: scale(1, 1) rotateY(180deg);
+            }
+            50% {
+                transform: scale(1.5, 1.5) rotateY(180deg);
+            }
+            100% {
+                transform: scale(1, 1) rotateY(180deg);
+            }
+        }
+
+        .card {
+            min-height: 475px;
+            width: 275px;
+            margin: 2rem;
+            border-radius: 15px;
+            background: #02383C;
+        }
+
+        .card .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem;
+            color: #ddd;
+        }
+
+        .card .header .title {
+            font-weight: 300;
+        }
+
+        .one .sort {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-size: 14.1px;
+        }
+
+        ::selection {
+            background: rgba(210, 255, 213, 0.3);
+        }
+
+        .photo {
+            width: 160px;
+            background: #fff;
+            border-radius: 50%;
+            margin: 1rem 0;
+        }
+
+        .top1 {
+            width: 180px;
+            border: 4px solid #fcff4a;
+            box-shadow: 0 0 20px #fcff4a;
+        }
+
+        .top2 {
+            border: 4px solid #919191;
+            box-shadow: 0 0 20px #919191;
+        }
+
+        .top3 {
+            border: 4px solid #c08b00;
+            box-shadow: 0 0 20px #c08b00;
+        }
+
+        .top1medal {
+            position: absolute;
+            top: -45px;
+            width: 330px;
+        }
+
+        .top2medal {
+            position: absolute;
+            top: 630px;
+            width: 300px;
+            left: 42px;
+        }
+
+        .top3medal {
+            position: absolute;
+            top: 649px;
+            width: 260px;
+            left: 738px;
+        }
+
+        .profile {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 320px;
+            margin-top: 600px;
+            width: 1060px;
+            background-image: url(images/leaderBoard.png);
+            background-size: cover;
+            padding-top: 50px;
+        }
+
+        .profile .person {
+            display: flex;
+            margin: 1rem 0;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .profile .person.first {
+            z-index: 10;
+            transform: translateY(-10%);
+        }
+
+        .first .fa-crown {
+            color: gold;
+            filter: drop-shadow(0px 0px 5px gold);
+        }
+
+        .num {
+            color: white;
+            font:bold 35px Helvetica, Arial, Sans-Serif;
+            text-align: center;
+        }
+
+        .fa-caret-up {
+            color: #fff900;
+            font-size: 21px;
+        }
+
+        .link {
+            margin: 0.2rem 0;
+            color: #fff;
+            margin-top: -0.3rem;
+            font-size: 30px;
+        }
+
+        .top1name {
+            position: absolute;
+            top: 150px;
+            color: #2b2b2b;
+            font-weight: bold;
+            font-size: 26px;
+        }
+
+        .top2name {
+            position: absolute;
+            top: 807px;
+            color: #2b2b2b;
+            font-weight: bold;
+            font-size: 23px;
+        }
+
+        .top3name {
+            position: absolute;
+            top: 814px;
+            color: #2b2b2b;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .points {
+            color: #fff900;
+            font:bold 37px Helvetica, Arial, Sans-Serif;
+            margin-top: 20px;
+        }
+
+        .second {
+            margin-right: 10rem !important;
+        }
+
+        .third {
+            margin-left: 10rem !important;
+        }
+
+        .p_img {
+            width: 50px;
+            background: #fff;
+            border-radius: 50%;
+        }
+
+        .flex {
+            display: flex;
+            align-items: center;
+        }
+
+        .others {
+            display: flex;
+            width: 100%;
+            margin-top: 1rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 30px;
+            background: rgba(210, 255, 213, 0.3);
+        }
+
+        .info .points {
+            margin-left: 0.2rem;
+            margin-right: 1.2rem;
+        }
+
+        .info .link {
+            margin: 0 1rem;
+        }
+
+        .rank {
+            display: flex;
+            align-items: center;
+            margin: 0 1rem;
+            flex-direction: column-reverse;
+        }
+
+        .rank i {
+            margin-top: -5px !important;
+        }
+
+        .rank .num {
+            margin: 0 !important;
+        }
+
+        /*img[id^='sodRow'] {*/
+        /*    animation: blinker 0.7s linear infinite;*/
+        /*}*/
+
+        /*@keyframes blinker {*/
+        /*    50% {*/
+        /*        opacity: 0.7;*/
+        /*    }*/
+        /*}*/
     </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.4.1/socket.io.min.js" crossorigin="anonymous"
+            referrerpolicy="no-referrer"></script>
+    <script src="connection.js" type="text/javascript"></script>
+    <script src="app.js" type="text/javascript"></script>
     <script src="js/Cfunction.js" type="text/javascript"></script>
     <script src="js/CPlants.js" type="text/javascript"></script>
     <script src="js/CZombie.js" type="text/javascript"></script>
     <script src="level/controll.js" type="text/javascript"></script>
     <script id="JSPVZ" type="text/javascript"></script>
     <script id="JSProcess" type="text/javascript"></script>
-    <link rel='canonical' href='http://choinhanh.vn/game-chien-thuat/cuoc-chien-zombie'/>
 </head>
 <body id="dBody" topmargin="0" leftmargin="0" oncontextmenu="return false" ondragstart="return false"
       onselectstart="return false">
@@ -363,11 +605,6 @@
 <!--进度条-->
 <div id="dFlagMeter"
      style="visibility:hidden;position:absolute;z-index:255;left:50px;top:280px;width:500px;height:40px">
-    <div style="position: absolute; left: 50%;bottom: 0px;z-index: 1000;width: 100%;">
-        <div id="dNameWinner" style="position: relative; left: -50%; z-index: 1000;color: green;background: white;border-radius: 10px;padding: 6px 12px;font-weight: bold;visibility: hidden;text-align: center;">
-
-        </div>
-    </div>
     <div id="dFlagMeterTitle" style="position:absolute;text-align:right">
         <div id="dFlagMeterTitleB"><span id="sFlagMeterTitleF"></span></div>
     </div>
@@ -412,7 +649,8 @@
                 <div style="margin-top:150px;height:40px"><input type="checkbox" id="cAutoSun" value="1"
                                                                  onChange="CheckAutoSun(this)"><label for="cAutoSun"
                                                                                                       id="lAutoSun"
-                                                                                                      style="color:#FFF">Tự động nhận ánh sáng</label></div>
+                                                                                                      style="color:#FFF">Tự
+                    động nhận ánh sáng</label></div>
                 <div class="BigLevel" style="cursor:pointer" onClick="SelectModal(oS.Lvl)">Khởi động lại</div>
                 <div class="BigLevel" style="cursor:pointer"
                      onClick="HiddenOptions();SelectModal(0);SetBlock($('dSurface'),$('iSurfaceBackground'))">Trở lại
@@ -488,7 +726,7 @@
 </div>
 
 <!--主界面EDAll-->
-<div class="WindowFrame" id="dAll" style="position:absolute;top:0;width:1060px;background-color:#000">
+<div class="WindowFrame" id="dAll" style="position:absolute;top:0;width:1060px;background-color:#000; transform: rotateY(180deg);">
     <!--背景图片-->
     <div style="position:absolute;width:1560px;height:600px;display:none;z-index:0" id="tGround"></div>
     <!--左边卡片列-->
@@ -630,6 +868,27 @@
         document.write('<div><script src="http://s9.cnzz.com/stat.php?id=2462431&web_id=2462431&show=pic"></scri' + 'pt></div>');</script>
 </div>
 
+<div class="profile">
+    <div class="person second">
+        <img id="topAvatar2" src="images/Zombies/avataZombie2.png" alt="" class="photo top2">
+        <img src="images/top2.png" class="top2medal">
+        <p id="topName2" class="top2name">Zombie</p>
+        <div id="topScore2" class="points">∞ 🧠</div>
+    </div>
+    <div class="person first">
+        <img id="topAvatar1" src="images/Zombies/avataZombie1.png" alt="" class="photo top1">
+        <img src="images/top1.png" class="top1medal">
+        <p id="topName1" class="top1name">Zombie</p>
+        <div id="topScore1" class="points">∞ 🧠</div>
+    </div>
+    <div class="person third">
+        <img id="topAvatar3" src="images/Zombies/avataZombie3.png" alt="" class="photo top3">
+        <img src="images/top3.png" class="top3medal">
+        <p id="topName3" class="top3name">Zombie</p>
+        <div id="topScore3" class="points">∞ 🧠</div>
+    </div>
+</div>
+
 <script type="text/javascript">
 
     function launchFullscreen(element) {
@@ -645,20 +904,6 @@
     //初始化系统对象，载入关卡
     LoadLvl();
 
-    /*google
-    if($User.HTTP){
-        var _gaq=_gaq||[];
-        _gaq.push(['_setAccount', 'UA-18730911-1']);
-        _gaq.push(['_trackPageview']);
-        (function() {
-            var ga=document.createElement('script'),s = document.getElementsByTagName('script')[0];
-            ga.type='text/javascript';
-            ga.async=true;
-            ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';
-            s.parentNode.insertBefore(ga, s);
-        })();
-    }*/
 </script>
-<?php require '../ga.php'; ?>
 </body>
 </html>

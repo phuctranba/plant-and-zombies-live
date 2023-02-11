@@ -7,7 +7,7 @@ oS.Init({
     }(),
     backgroundImage: "images/interface/background1.jpg",
     CanSelectCard: 0,
-    LevelName: "1-5 特别关：陨石坑",
+    LevelName: "1-5",
     LargeWaveFlag: {10: $("imgFlag1")},
     LoadMusic: function () {
         NewEle("oEmbed", "embed", "width:0;height:0", {src: "music/Look up at the.mp3"}, EDAll)
