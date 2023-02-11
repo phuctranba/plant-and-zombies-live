@@ -32,7 +32,7 @@ const ENUM_TYPE_ACTION = {
     COMMENT: "COMMENT",
 }
 
-function connect() {
+function connect($) {
     let uniqueId = window.settings.username || $('#uniqueIdInput').val();
     if (uniqueId !== '') {
 
@@ -65,7 +65,12 @@ function connect() {
     }
 }
 
-connect();
+/**
+ * Jamviet.com fixed
+ */
+jQuery(document).ready(($) => {
+    connect($);
+});
 
 // Prevent Cross site scripting (XSS)
 function sanitize(text) {

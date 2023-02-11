@@ -120,8 +120,7 @@ const arrPositionMouseOnCell = [
 
 const $User = function () {
     var a = navigator.platform, e = navigator.userAgent, c = (a == "Win32" || a == "Windows"),
-        d = (a == "Mac68K" || a == "MacPPC" || a == "Macintosh"), b = (a == "X11" && !c && !d), g = c || d || b,
-        f = "pvz.lonelystar.org";
+        d = (a == "Mac68K" || a == "MacPPC" || a == "Macintosh"), b = (a == "X11" && !c && !d), g = c || d || b;
     return {
         Browser: {
             IE: !!(window.attachEvent && !window.opera),
@@ -132,9 +131,7 @@ const $User = function () {
         },
         System: {Win: c, Mac: d, Unix: b},
         Client: {PC: g, Mobile: !g},
-        HTTP: location.protocol.toLowerCase() == "http:" ? 1 : 0,
-        AuthorWebsite: f,
-        isAuthorWebsite: location.hostname === f
+        HTTP: location.protocol.toLowerCase() == "http:" ? 1 : 0
     }
 }();
 
@@ -1593,7 +1590,7 @@ const LoadProProcess = function () {
         ClearChild(a)
     }, a.onerror = function () {
         ClearChild(this)
-    }, !$("dText1") && b.insertBefore(NewEle("dText1", "div", 0, {innerHTML: ''}, 0), b.firstChild), a.src = "http://" + $User.AuthorWebsite + "/js/Process.js") : $("sTime").innerHTML = oS.Version
+    }, !$("dText1") && b.insertBefore(NewEle("dText1", "div", 0, {innerHTML: ''}, 0), b.firstChild) ) : $("sTime").innerHTML = oS.Version
 };
 
 
